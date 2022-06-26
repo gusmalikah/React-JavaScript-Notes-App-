@@ -7,13 +7,15 @@ import {nanoid} from "nanoid"
 
 export default function App() {
     const [notes, setNotes] = React.useState(
-    () => JSON.parse(localStorage.getItem("notes")) || [])
+        () => JSON.parse(localStorage.getItem("notes")) || []
+    )
     const [currentNoteId, setCurrentNoteId] = React.useState(
         (notes[0] && notes[0].id) || ""
     )
-        React.useEffect(() => {
+    
+    React.useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes))
-        }, [notes])
+    }, [notes])
     
     function createNewNote() {
         const newNote = {
@@ -27,9 +29,9 @@ export default function App() {
     function updateNote(text) {
         setNotes(oldNotes => {
             const newArray = []
-            for(let i = 0; i<oldNotes.length; i++) {
+            for(let i = 0; i < oldNotes.length; i++) {
                 const oldNote = oldNotes[i]
-                if(oldNotes[i].id === currentNoteId ){
+                if(oldNote.id === currentNoteId) {
                     newArray.unshift({ ...oldNote, body: text })
                 } else {
                     newArray.push(oldNote)
@@ -37,6 +39,11 @@ export default function App() {
             }
             return newArray
         })
+    }
+    
+    function deleteNote(event, noteId) {
+        event.stopPropagation()
+        setNotes(oldNotes => oldNotes.filter((note) => note.id !== noteId))
     }
     
     function findCurrentNote() {
@@ -60,6 +67,7 @@ export default function App() {
                     currentNote={findCurrentNote()}
                     setCurrentNoteId={setCurrentNoteId}
                     newNote={createNewNote}
+                    deleteNote={deleteNote}
                 />
                 {
                     currentNoteId && 
