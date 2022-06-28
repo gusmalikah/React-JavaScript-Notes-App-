@@ -1,3 +1,8 @@
+# React-JavaScript(Notes-APP)
+This project is built with ReactJs library by the use of JavaScript, Html, and Css. This project is basically a simple Notes app that allow the user to create new notes and to delet any if they wish. The most recent note which the user edited from the list automatically comes to the top of the list.
+![eb199608830dc6112effd73da85f92c5](https://user-images.githubusercontent.com/71040758/176175807-28c5e6c2-f84e-489a-8006-62c45c3399af.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
